@@ -5,71 +5,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICT Papers - Science College</title>
     <style>
+        /* 1. මූලික පෙනුම */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f172a; /* Dark Blue Theme */
+            background-color: #0f172a;
             color: white;
             text-align: center;
             padding: 20px;
+            overflow-x: hidden;
         }
+
+        /* 2. Animations (Keyframes) */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: auto;
             background: #1e293b;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            animation: slideUp 0.8s ease-out;
         }
-        h1 { color: #38bdf8; }
+
+        h1 { color: #38bdf8; margin-bottom: 10px; }
+        .sub-text { color: #94a3b8; margin-bottom: 30px; }
+
+        /* 3. Paper Cards Design */
         .paper-card {
             background: #334155;
             margin: 15px 0;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 18px 25px;
+            border-radius: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: 0.3s;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid transparent;
+            animation: slideUp 1s ease-out;
         }
-        .paper-card:hover { transform: scale(1.02); background: #475569; }
+
+        .paper-card:hover { 
+            transform: translateY(-8px);
+            background: #475569;
+            border-color: #38bdf8;
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.2);
+        }
+
+        .paper-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 4. Download Button Animation */
         .btn-download {
             background: #0ea5e9;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 22px;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: bold;
+            font-size: 0.9rem;
+            animation: pulse 2.5s infinite;
+            display: inline-block;
+            transition: 0.3s;
         }
-        .btn-download:hover { background: #0284c7; }
-        .back-link { display: block; margin-top: 20px; color: #94a3b8; text-decoration: none; }
+
+        .btn-download:hover {
+            background: #0284c7;
+            animation: none; /* Mouse එක තිබ්බම ගැහෙන එක නතර වෙනවා */
+        }
+
+        .back-link { 
+            display: block; 
+            margin-top: 30px; 
+            color: #38bdf8; 
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>ICT Revision Papers 📚</h1>
-    <p>2026 A/L සිසුන් සඳහා විශේෂ ප්‍රශ්න පත්තර එකතුව</p>
+    <p class="sub-text">Science College - 2026 A/L ICT Unit Revision Series</p>
     
-    <hr style="border: 0.5px solid #475569; margin: 20px 0;">
-
     <div class="paper-card">
-        <span>📄 ICT Model Paper 01</span>
-        <a href="https://drive.google.com/drive/folders/1--Heq1hOQXCKZS9tno-DlTXkuvN-sx_-" target="_blank" class="btn-download">Download</a>
+        <div class="paper-name">📄 Unit 01 - Introduction to ICT</div>
+        <a href="https://drive.google.com/drive/folders/1--Heq1hOQXCKZS9tno-DlTXkuvN-sx_-" target="_blank" class="btn-download">Download PDF</a>
     </div>
 
     <div class="paper-card">
-        <span>📄 ICT Revision Questions - Unit 1</span>
-        <a href="https://drive.google.com/drive/folders/1--Heq1hOQXCKZS9tno-DlTXkuvN-sx_-" target="_blank" class="btn-download">Download</a>
+        <div class="paper-name">📄 Unit 02 - Computer Architecture</div>
+        <a href="https://drive.google.com/drive/folders/1--Heq1hOQXCKZS9tno-DlTXkuvN-sx_-" target="_blank" class="btn-download">Download PDF</a>
     </div>
+
+    <div class="paper-card">
+        <div class="paper-name">📄 Unit 03 - Data Communication</div>
+        <a href="https://drive.google.com/drive/folders/1--Heq1hOQXCKZS9tno-DlTXkuvN-sx_-" target="_blank" class="btn-download">Download PDF</a>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-name">📄 Unit 04 - Operating Systems</div>
+        <a href="https://drive.google.com/drive/folders/1--Heq1hOQXCKZS9tno-DlTXkuvN-sx_-" target="_blank" class="btn-download">Download PDF</a>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-name">📄 Full Model Paper - Term 01</div>
+        <a href="https://drive.google.com/drive/folders/1--Heq1hOQXCKZS9tno-DlTXkuvN-sx_-" target="_blank" class="btn-download" style="background: #f43f5e;">Download PDF</a>
+    </div>
+
+    <hr style="border: 0.5px solid #475569; margin: 25px 0;">
 
     <div class="paper-card" style="background: #0f172a; border: 1px dashed #38bdf8;">
-        <span>📁 View All Papers in Folder</span>
-        <a href="https://drive.google.com/drive/folders/1--Heq1hOQXCKZS9tno-DlTXkuvN-sx_-" target="_blank" class="btn-download" style="background: #10b981;">Open Drive</a>
+        <div class="paper-name">📁 View All Study Materials</div>
+        <a href="https://drive.google.com/drive/folders/1--Heq1hOQXCKZS9tno-DlTXkuvN-sx_-" target="_blank" class="btn-download" style="background: #10b981; animation: none;">Open Drive</a>
     </div>
 
-    <a href="index.html" class="back-link">← ආපසු මුල් පිටුවට</a>
+    <a href="index.html" class="back-link">← Back to Main Page</a>
 </div>
 
 </body>
 </html>
-
