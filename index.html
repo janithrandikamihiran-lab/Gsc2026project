@@ -170,20 +170,18 @@
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-  // 1. Connection Setup (නිවැරදි කරන ලද URL එක)
+  // නිවැරදි කරන ලද URL එක සහ KEY එක
   const _supabase = supabase.createClient(
     'https://chsujlwtkzauuoiirhss.supabase.co', 
     'EyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNoY3VqbHd0a3pldXVvaXJodHNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Mzg3NDIsImV4cCI6MjA4OTUxNDc0Mn0.NghFgyRg9FX9IWsBN4PaOvfl8HsH8hf8r-TN2zdIncI'
   );
 
-  // 2. Button එකට වැඩේ සෙට් කිරීම
   document.addEventListener('DOMContentLoaded', () => {
     const loginBtn = document.querySelector('.btn-login');
 
     if (loginBtn) {
       loginBtn.addEventListener('click', async (e) => {
         e.preventDefault();
-        
         const inputField = document.querySelector('input[placeholder*="Index"]') || document.querySelector('input');
         const val = inputField.value.trim();
 
@@ -192,13 +190,11 @@
           return;
         }
 
-        // 3. Database එකට Data යැවීම
         const { data, error } = await _supabase
           .from('students')
           .insert([{ index_no: val, status: 'Active' }]);
 
         if (error) {
-          console.error(error);
           alert("Error: " + error.message);
         } else {
           alert("සාර්ථකයි! දත්ත Database එකට එකතු වුණා. ✅");
@@ -208,7 +204,6 @@
     }
   });
 </script>
-
 
     </footer>
 
