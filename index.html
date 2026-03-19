@@ -170,46 +170,39 @@
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-  // 1. Supabase Connection
-  const SUPABASE_URL = 'https://chsujlwtkzauuoiirhss.supabase.co';
-  const SUPABASE_KEY = 'EyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNoY3VqbHd0a3pldXVvaXJodHNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Mzg3NDIsImV4cCI6MjA4OTUxNDc0Mn0.NghFgyRg9FX9IWsBN4PaOvfl8HsH8hf8r-TN2zdIncI';
-  const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  // 1. Connection Setup (නිවැරදි කරන ලද URL එක)
+  const _supabase = supabase.createClient(
+    'https://chsujlwtkzauuoiirhss.supabase.co', 
+    'EyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNoY3VqbHd0a3pldXVvaXJodHNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Mzg3NDIsImV4cCI6MjA4OTUxNDc0Mn0.NghFgyRg9FX9IWsBN4PaOvfl8HsH8hf8r-TN2zdIncI'
+  );
 
-  // 2. Button Click Event
+  // 2. Button එකට වැඩේ සෙට් කිරීම
   document.addEventListener('DOMContentLoaded', () => {
     const loginBtn = document.querySelector('.btn-login');
-    
+
     if (loginBtn) {
       loginBtn.addEventListener('click', async (e) => {
         e.preventDefault();
         
-        // Input එක නිවැරදිව තෝරා ගැනීම
-        const studentIdInput = document.querySelector('input[type="text"]') || document.querySelector('input');
-        const studentId = studentIdInput.value.trim();
+        const inputField = document.querySelector('input[placeholder*="Index"]') || document.querySelector('input');
+        const val = inputField.value.trim();
 
-        if (!studentId) {
-          alert("කරුණාකර ශිෂ්‍ය අංකය ඇතුළත් කරන්න! ⚠️");
+        if (!val) {
+          alert("කරුණාකර අංකයක් ඇතුළත් කරන්න!");
           return;
         }
 
-        try {
-          // 3. Database එකට Data යැවීම (Table: students, Column: index_no)
-          const { data, error } = await _supabase
-            .from('students')
-            .insert([{ 
-              index_no: studentId, 
-              status: 'Active' 
-            }]);
+        // 3. Database එකට Data යැවීම
+        const { data, error } = await _supabase
+          .from('students')
+          .insert([{ index_no: val, status: 'Active' }]);
 
-          if (error) {
-            console.error("Supabase Error:", error);
-            alert("Error: " + error.message);
-          } else {
-            alert("සාර්ථකයි! ඔබේ දත්ත Database එකට එකතු වුණා. ✅");
-            studentIdInput.value = ""; 
-          }
-        } catch (err) {
-          alert("Connection Error! කරුණාකර නැවත උත්සාහ කරන්න.");
+        if (error) {
+          console.error(error);
+          alert("Error: " + error.message);
+        } else {
+          alert("සාර්ථකයි! දත්ත Database එකට එකතු වුණා. ✅");
+          inputField.value = "";
         }
       });
     }
