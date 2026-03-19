@@ -165,6 +165,48 @@
         </div>
         <p>Government Science College, Matale, Sri Lanka.</p>
         <p>&copy; 2026 Science College Technology. All Rights Reserved.</p>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // 1. Supabase Connection එක (ඔයාගේ දත්ත ඇතුළත් කර ඇත)
+  const SUPABASE_URL = 'https://chsujlwtkzauuoiirhss.supabase.co';
+  const SUPABASE_KEY = 'EyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNoY3VqbHd0a3pldXVvaXJodHNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Mzg3NDIsImV4cCI6MjA4OTUxNDc0Mn0.NghFgyRg9FX9IWsBN4PaOvfl8HsH8hf8r-TN2zdIncI';
+  const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  // 2. Login Button එක Click කරද්දී වැඩ කරන හැටි
+  document.querySelector('.btn-login').addEventListener('click', async (e) => {
+    e.preventDefault();
+    
+    // Input එකේ තියෙන Index Number එක ගැනීම
+    const studentIdInput = document.querySelector('input[placeholder="ශිෂ්‍ය අංකය (Index No)"]');
+    const studentId = studentIdInput.value;
+
+    if(!studentId) {
+        alert("කරුණාකර ශිෂ්‍ය අංකය ඇතුළත් කරන්න! ⚠️");
+        return;
+    }
+
+    try {
+      // 3. Database එකේ 'students' කියන Table එකට Data යැවීම
+      const { data, error } = await _supabase
+        .from('students') 
+        .insert([{ index_no: studentId, status: 'Active', login_time: new Date() }]);
+
+      if (error) {
+        throw error;
+      } else {
+        alert("සාර්ථකයි! ඔබේ දත්ත Database එකට එකතු වුණා. ✅");
+        studentIdInput.value = ""; // Form එක clear කිරීම
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      alert("අවුලක් වුණා! Supabase Table එකේ 'index_no' column එක හදලද තියෙන්නේ කියලා බලන්න. 🧐");
+    }
+  });
+</script>
+
     </footer>
 
 </body>
