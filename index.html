@@ -163,64 +163,15 @@
             <i class="fab fa-youtube" style="font-size: 1.5rem; margin: 0 10px;"></i>
             <i class="fas fa-envelope" style="font-size: 1.5rem; margin: 0 10px;"></i>
         </div>
-        <p>Government Science College, Matale, Sri Lanka.</p>
-        <p>&copy; 2026 Science College Technology. All Rights Reserved.</p>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<div style="margin-top: 20px;">
+    <p style="color: #94a3b8;">ප්‍රශ්න පත්තර ලබාගැනීමට පහත බොත්තම ඔබන්න</p>
+    <a href="papers.html" class="btn-login" style="text-decoration: none; display: inline-block; background-color: #10b981;">
+        Go to Papers 📄
+    </a>
+</div>
 
-<script>
-  // 1. Supabase Connection Setup
-  // ඔයාගේ Screenshot එකේ පේන නිවැරදි Project ID එක සහිත URL එක තමයි මේක:
-  const SUPABASE_URL = 'https://chcujlwtkzeuuoIrhss.supabase.co'; 
-  const SUPABASE_KEY = 'EyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNoY3VqbHd0a3pldXVvaXJodHNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Mzg3NDIsImV4cCI6MjA4OTUxNDc0Mn0.NghFgyRg9FX9IWsBN4PaOvfl8HsH8hf8r-TN2zdIncI';
-
-  const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-  // 2. Button එක Click කරන කොට වැඩ කරන හැටි
-  document.addEventListener('DOMContentLoaded', () => {
-    const loginBtn = document.querySelector('.btn-login');
-
-    if (loginBtn) {
-      loginBtn.addEventListener('click', async (e) => {
-        e.preventDefault();
-
-        // ශිෂ්‍ය අංකය ගන්නා කොටස
-        const inputField = document.querySelector('input[placeholder*="Index"]') || document.querySelector('input');
-        const val = inputField.value.trim();
-
-        if (!val) {
-          alert("කරුණාකර ශිෂ්‍ය අංකය (Index Number) ඇතුළත් කරන්න!");
-          return;
-        }
-
-        try {
-          // 3. Database (students table) එකට Data යැවීම
-          const { data, error } = await _supabase
-            .from('students')
-            .insert([{ 
-              index_no: val, 
-              status: 'Active' 
-            }]);
-
-          if (error) {
-            console.error("Supabase Error:", error);
-            // Table එකේ column නම වැරදි නම් මේකෙන් කියයි
-            alert("අවුලක් වුණා: " + error.message);
-          } else {
-            console.log("Success:", data);
-            alert("සාර්ථකයි! ඔබේ දත්ත Database එකට එකතු වුණා. ✅");
-            inputField.value = ""; // Input එක Clear කරන්න
-          }
-        } catch (err) {
-          console.error("Fetch Error:", err);
-          alert("Failed to fetch! කරුණාකර Brave Shield එක Off කරලා බලන්න.");
-        }
-      });
-    }
-  });
-</script>
-
-
+                
     </footer>
 
 </body>
