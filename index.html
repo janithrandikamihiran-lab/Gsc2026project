@@ -169,36 +169,53 @@
 
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+  // 1. Supabase Connection
   const SUPABASE_URL = 'https://chsujlwtkzauuoiirhss.supabase.co';
   const SUPABASE_KEY = 'EyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNoY3VqbHd0a3pldXVvaXJodHNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Mzg3NDIsImV4cCI6MjA4OTUxNDc0Mn0.NghFgyRg9FX9IWsBN4PaOvfl8HsH8hf8r-TN2zdIncI';
   const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  document.querySelector('.btn-login').addEventListener('click', async (e) => {
-    e.preventDefault();
-    const studentIdInput = document.querySelector('input[placeholder="ශිෂ්‍ය අංකය (Index No)"]');
-    const studentId = studentIdInput.value;
+  // 2. Button Click Event
+  document.addEventListener('DOMContentLoaded', () => {
+    const loginBtn = document.querySelector('.btn-login');
+    
+    if (loginBtn) {
+      loginBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        
+        // Input එක නිවැරදිව තෝරා ගැනීම
+        const studentIdInput = document.querySelector('input[type="text"]') || document.querySelector('input');
+        const studentId = studentIdInput.value.trim();
 
-    if(!studentId) {
-        alert("කරුණාකර ශිෂ්‍ය අංකය ඇතුළත් කරන්න!");
-        return;
-    }
+        if (!studentId) {
+          alert("කරුණාකර ශිෂ්‍ය අංකය ඇතුළත් කරන්න! ⚠️");
+          return;
+        }
 
-    // දත්ත යවන කොටස
-    const { data, error } = await _supabase
-      .from('students')
-      .insert([{ index_no: studentId, status: 'Active' }]);
+        try {
+          // 3. Database එකට Data යැවීම (Table: students, Column: index_no)
+          const { data, error } = await _supabase
+            .from('students')
+            .insert([{ 
+              index_no: studentId, 
+              status: 'Active' 
+            }]);
 
-    if (error) {
-      console.log(error);
-      alert("අවුලක් වුණා! කරුණාකර පිටුව Refresh කර නැවත උත්සාහ කරන්න.");
-    } else {
-      alert("සාර්ථකයි! දත්ත Database එකට එකතු වුණා. ✅");
-      studentIdInput.value = "";
+          if (error) {
+            console.error("Supabase Error:", error);
+            alert("Error: " + error.message);
+          } else {
+            alert("සාර්ථකයි! ඔබේ දත්ත Database එකට එකතු වුණා. ✅");
+            studentIdInput.value = ""; 
+          }
+        } catch (err) {
+          alert("Connection Error! කරුණාකර නැවත උත්සාහ කරන්න.");
+        }
+      });
     }
   });
 </script>
+
 
     </footer>
 
