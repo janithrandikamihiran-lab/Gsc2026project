@@ -1,4 +1,4 @@
-# 👋 ආයුබෝවන්! මම ජනිත් රන්දික මිහිරාන් (Janith)
+# 👋 Welcome i am mihiran:)
 
 <p align="left">
   <img src="https://komarev.com/ghpvc/?username=janithrandikamihiran-lab&label=Profile%20Views&color=0e75b6&style=flat" alt="Views" />
