@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <title>GSC Admin Panel | 2026</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: white; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: #161b22; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        h2 { border-bottom: 2px solid #00FFD5; padding-bottom: 10px; color: #00FFD5; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #30363d; padding: 12px; text-align: left; }
+        th { background: #00FFD5; color: black; }
+        tr:nth-child(even) { background: #21262d; }
+        .btn-refresh { background: #238636; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; float: right; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="login-area">
+    <h2>🔒 Admin Login</h2>
+    <input type="password" id="admin-pass" placeholder="Password එක ඇතුළත් කරන්න" style="padding: 10px; width: 80%; border-radius: 5px; border: none;">
+    <button onclick="checkPass()" style="padding: 10px; background: #00FFD5; border: none; border-radius: 5px; cursor: pointer;">Login</button>
+</div>
+
+<div class="container" id="admin-panel" style="display: none;">
+    <button class="btn-refresh" onclick="fetchStudents()">Refresh List 🔄</button>
+    <h2>👨‍🎓 Student Enrollment List</h2>
+    <table id="student-table">
+        <thead>
+            <tr>
+                <th>Index No</th>
+                <th>Status</th>
+                <th>Time Joined</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            </tbody>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    const _supabase = supabase.createClient('https://chsujlwtkzauuoiirhss.supabase.co', 'YOUR_ANON_KEY_HERE');
+
+    // 1. Password එක පරීක්ෂා කිරීම (ඔයාට කැමති එකක් දාන්න)
+    function checkPass() {
+        const pass = document.getElementById('admin-pass').value;
+        if(pass === "gsc123") { // මෙතන 'gsc123' වෙනුවට ඔයාගේ රහස් අංකය දාන්න
+            document.getElementById('login-area').style.display = 'none';
+            document.getElementById('admin-panel').style.display = 'block';
+            fetchStudents();
+        } else {
+            alert("වැරදි Password එකක්! ❌");
+        }
+    }
+
+    // 2. Database එකේ තියෙන දත්ත ගෙන ඒම
+    async function fetchStudents() {
+        const { data, error } = await _supabase
+            .from('students')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            console.error(error);
+        } else {
+            const tbody = document.getElementById('table-body');
+            tbody.innerHTML = "";
+            data.forEach(student => {
+                const row = `<tr>
+                    <td>${student.index_no}</td>
+                    <td>${student.status}</td>
+                    <td>${new Date(student.created_at).toLocaleString()}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+    }
+</script>
+</body>
+</html>
+
