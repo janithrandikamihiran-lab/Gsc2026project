@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Government Science College | Matale</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Science College Technology | Matale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary-color: #003087; /* School Dark Blue */
-            --secondary-color: #ffcc00; /* Gold/Yellow accent */
-            --text-light: #ffffff;
-            --text-dark: #333;
+            --primary: #0a192f;
+            --accent: #64ffda;
+            --gold: #ffcc00;
+            --text-main: #ccd6f6;
+            --bg-light: #112240;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--primary); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
         /* Navigation */
         nav {
-            background: var(--primary-color);
-            padding: 15px 5%;
+            background: rgba(10, 25, 47, 0.95);
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -28,126 +30,142 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
         }
 
-        .logo { color: white; font-weight: 700; font-size: 1.2rem; }
+        .logo { color: var(--accent); font-weight: 800; font-size: 1.5rem; letter-spacing: 1px; }
 
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 20px; }
-        nav ul li a { color: white; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-        nav ul li a:hover { color: var(--secondary-color); }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 25px; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1541339907198-e08756defe93?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
             text-align: center;
+            background: radial-gradient(circle at center, #112240 0%, #0a192f 100%);
             padding: 0 20px;
         }
 
-        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .hero p { font-size: 1.2rem; margin-bottom: 25px; max-width: 700px; }
-        .btn {
-            background: var(--secondary-color);
-            color: #000;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: 0.3s;
+        .hero h1 { font-size: clamp(2rem, 8vw, 4rem); color: white; margin-bottom: 10px; }
+        .hero span { color: var(--accent); }
+        .hero p { max-width: 600px; font-size: 1.1rem; color: #8892b0; margin-bottom: 30px; }
+
+        /* Notice Board */
+        .notices { background: var(--bg-light); padding: 50px 10%; }
+        .notice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; }
+        .notice-card { background: var(--primary); padding: 20px; border-left: 4px solid var(--accent); border-radius: 5px; }
+        .notice-card span { font-size: 0.8rem; color: var(--accent); }
+
+        /* Subjects Section */
+        .subjects { padding: 80px 10%; }
+        .sub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .sub-card { 
+            background: var(--bg-light); padding: 30px; text-align: center; border-radius: 10px;
+            transition: 0.3s; border: 1px solid transparent;
         }
-        .btn:hover { transform: scale(1.1); background: white; }
+        .sub-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .sub-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
 
-        /* Section Styling */
-        section { padding: 80px 10%; text-align: center; }
-        h2 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 30px; }
-        
-        /* Gallery Grid */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .gallery img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; transition: 0.3s; cursor: pointer; }
-        .gallery img:hover { transform: scale(1.05); filter: brightness(1.1); }
+        /* Student Portal UI */
+        .portal { background: linear-gradient(rgba(10,25,47,0.8), rgba(10,25,47,0.8)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1000&q=80'); background-size: cover; padding: 100px 10%; text-align: center; }
+        .login-box { max-width: 400px; margin: auto; background: var(--bg-light); padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .login-box h3 { margin-bottom: 20px; color: white; }
+        input { width: 100%; padding: 12px; margin-bottom: 15px; background: #0a192f; border: 1px solid #233554; color: white; border-radius: 5px; }
+        .btn-login { width: 100%; padding: 12px; background: var(--accent); color: var(--primary); border: none; font-weight: bold; cursor: pointer; border-radius: 5px; }
 
-        /* Contact Section */
-        .contact-box {
-            background: #f4f4f4;
-            padding: 40px;
-            border-radius: 15px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-        .contact-info { text-align: left; min-width: 250px; }
-        .contact-info i { color: var(--primary-color); margin-right: 10px; }
+        footer { padding: 50px 10%; border-top: 1px solid #233554; text-align: center; font-size: 0.8rem; }
 
-        footer { background: #111; color: white; padding: 20px; text-align: center; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            nav ul { display: none; } /* Mobile වලදී menu එක හංගන්න (සරල බව සඳහා) */
-        }
+        @media (max-width: 768px) { .nav-links { display: none; } }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">GSC MATALE</div>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
+        <div class="logo">SCIENCE COLLEGE TECH</div>
+        <ul class="nav-links">
+            <li><a href="#home">මුල් පිටුව</a></li>
+            <li><a href="#notices">පුවත්</a></li>
+            <li><a href="#subjects">විෂයයන්</a></li>
+            <li><a href="#portal">LMS Portal</a></li>
+            <li><a href="#contact">සම්බන්ධතා</a></li>
         </ul>
     </nav>
 
     <section class="hero" id="home">
-        <h1>Government Science College</h1>
-        <p>මාතලේ රජයේ විද්‍යා විද්‍යාලය - විද්‍යා අධ්‍යාපනයේ විශිෂ්ටතමයා.</p>
-        <a href="#about" class="btn">වැඩිදුර තොරතුරු</a>
-    </section>
-
-    <section id="about">
-        <h2>අප ගැන</h2>
-        <p>ශ්‍රී ලංකාවේ විද්‍යා අධ්‍යාපනය වෙනුවෙන්ම වෙන්වූ සුවිශේෂී පාසලක් ලෙස මාතලේ රජයේ විද්‍යා විද්‍යාලය ප්‍රසිද්ධියක් උසුලයි. දක්ෂ ගුරු මණ්ඩලයක් සහ නවීන පහසුකම් සහිතව අපි අනාගත ලෝකය ජයගන්නා දරුවන් නිර්මාණය කරමු.</p>
-    </section>
-
-    <section id="gallery" style="background: #fff;">
-        <h2>ඡායාරූප ගැලරිය</h2>
-        <div class="gallery">
-            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=500&q=80" alt="Lab">
-            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=500&q=80" alt="Students">
-            <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=500&q=80" alt="Building">
-            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80" alt="Library">
+        <h1><span>Science College</span> Technology</h1>
+        <p>මාතලේ රජයේ විද්‍යා විද්‍යාලයේ තාක්ෂණික හා විද්‍යා අංශයේ නිල වෙබ් ද්වාරය. නවීන ලෝකයට ගැළපෙන තාක්ෂණික අධ්‍යාපනයක්.</p>
+        <div class="btn-group">
+            <a href="#notices" style="text-decoration: none; color: var(--accent); border: 1px solid var(--accent); padding: 10px 25px; border-radius: 5px;">විස්තර බලන්න</a>
         </div>
     </section>
 
-    <section id="contact">
-        <h2>අපව සම්බන්ධ කරගන්න</h2>
-        <div class="contact-box">
-            <div class="contact-info">
-                <p><i class="fas fa-map-marker-alt"></i> Government Science College, Matale.</p>
-                <p><i class="fas fa-phone"></i> +94 66 123 4567</p>
-                <p><i class="fas fa-envelope"></i> info@gscmatale.sch.lk</p>
+    <section class="notices" id="notices">
+        <h2 style="color: white; margin-bottom: 10px;">විශේෂ නිවේදන (Notice Board)</h2>
+        <div class="notice-grid">
+            <div class="notice-card">
+                <span>2026-03-20</span>
+                <h4>ICT වාර පරීක්ෂණය</h4>
+                <p>පළමු වාර පරීක්ෂණය ලබන සඳුදා පරිගණක විද්‍යාගාරයේදී පැවැත්වේ.</p>
             </div>
-            <div class="contact-info">
-                <p>සඳුදා - සිකුරාදා: පෙ.ව. 7.30 - ප.ව. 1.30</p>
+            <div class="notice-card">
+                <span>2026-03-15</span>
+                <h4>විද්‍යා දින උළෙල</h4>
+                <p>වාර්ෂික විද්‍යා දින උළෙල සඳහා නිර්මාණ බාරගැනීම දැන් සිදුකෙරේ.</p>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Government Science College Matale | Created with ❤️ for Science</p>
+    <section class="subjects" id="subjects">
+        <h2 style="color: white; text-align: center; margin-bottom: 40px;">ප්‍රධාන විෂය ධාරාවන්</h2>
+        <div class="sub-grid">
+            <div class="sub-card">
+                <i class="fas fa-microchip"></i>
+                <h3>ICT</h3>
+                <p>Information & Communication Technology</p>
+            </div>
+            <div class="sub-card">
+                <i class="fas fa-atom"></i>
+                <h3>Physics</h3>
+                <p>භෞතික විද්‍යාව</p>
+            </div>
+            <div class="sub-card">
+                <i class="fas fa-flask"></i>
+                <h3>Chemistry</h3>
+                <p>රසායන විද්‍යාව</p>
+            </div>
+            <div class="sub-card">
+                <i class="fas fa-dna"></i>
+                <h3>Biology</h3>
+                <p>ජීව විද්‍යාව</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="portal" id="portal">
+        <div class="login-box">
+            <h3>Student Login (LMS)</h3>
+            <p style="font-size: 0.8rem; margin-bottom: 20px;">ඔබේ පාසල් ගිණුමට ඇතුළු වන්න</p>
+            <input type="text" placeholder="ශිෂ්‍ය අංකය (Index No)">
+            <input type="password" placeholder="මුරපදය (Password)">
+            <button class="btn-login">LOGIN</button>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div style="margin-bottom: 20px;">
+            <i class="fab fa-facebook" style="font-size: 1.5rem; margin: 0 10px;"></i>
+            <i class="fab fa-youtube" style="font-size: 1.5rem; margin: 0 10px;"></i>
+            <i class="fas fa-envelope" style="font-size: 1.5rem; margin: 0 10px;"></i>
+        </div>
+        <p>Government Science College, Matale, Sri Lanka.</p>
+        <p>&copy; 2026 Science College Technology. All Rights Reserved.</p>
     </footer>
 
 </body>
 </html>
-
