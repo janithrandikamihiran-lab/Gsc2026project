@@ -30,7 +30,7 @@
 ---
 
 ### 📫 Connect with me
-- 📧 Email: `janith.randika.mihiran@gmail.com` (ඔයාගේ ඇත්ත email එක මෙතනට දාන්න)
+- 📧 Email: `janith.randika.mihiran@gmail.com` ✅
 - 🌐 Project Website: [GSC 2026 Project](https://janithrandikamihiran-lab.github.io/Gsc2026project/)
 
 ---
